@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.exam.dao.StockMapper">
+    <resultMap id="BaseResultMap" type="com.example.exam.entity.Stock">
+        <result column="e_id" jdbcType="INTEGER" property="emporiumId"/>
+        <result column="g_id" jdbcType="INTEGER" property="goodsId"/>
+        <result column="num" jdbcType="INTEGER" property="num"/>
+    </resultMap>
+
+    <update id="updateStock" parameterType="object">
+        update stock s
+        set num = s.num + #{num}
+        where e_id = #{emporiumId}
+          and g_id = #{goodsId}
+    </update>
+
+    <select id="queryStockByGoodsId" resultMap="BaseResultMap">
+        select * from stock where g_id = #{goodsId}
+    </select>
+
+
+</mapper>
